@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DDDSample.Wpf.Views
+namespace DDDSample.Wpf
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
