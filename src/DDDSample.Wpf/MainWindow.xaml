@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DDDSample.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="DDDSample"
+        MinHeight="450" MinWidth="800"
+        Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0">
+            <StackPanel>
+                <TextBlock Text="タイトル"/>
+                <TextBox Text=""/>
+                <TextBlock Text="詳細"/>
+                <TextBox Text=""/>
+                <TextBlock Text="期限日"/>
+                <DatePicker/>
+                <Button Content="登録する"
+                        Margin="8"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <DataGrid/>
+        </Grid>
     </Grid>
 </Window>
