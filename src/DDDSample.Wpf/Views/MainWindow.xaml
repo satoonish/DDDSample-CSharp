@@ -22,13 +22,14 @@
         <Grid Grid.Row="0">
             <StackPanel>
                 <TextBlock Text="タイトル"/>
-                <TextBox Text=""/>
+                <TextBox Text="{Binding Title.Value}"/>
                 <TextBlock Text="詳細"/>
-                <TextBox Text=""/>
+                <TextBox Text="{Binding Description.Value}"/>
                 <TextBlock Text="期限日"/>
-                <DatePicker/>
+                <DatePicker DisplayDate="{Binding Deadline.Value}"/>
                 <Button Content="登録する"
-                        Margin="8"/>
+                        Margin="8"
+                        Command="{Binding RegisterCommand}"/>
             </StackPanel>
         </Grid>
 

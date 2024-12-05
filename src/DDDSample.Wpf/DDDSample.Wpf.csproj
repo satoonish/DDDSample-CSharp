@@ -12,4 +12,9 @@
     <PackageReference Include="ReactiveProperty.WPF" Version="9.6.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DDDSample.Domain\DDDSample.Domain.csproj" />
+    <ProjectReference Include="..\DDDSample.Infrastructure\DDDSample.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

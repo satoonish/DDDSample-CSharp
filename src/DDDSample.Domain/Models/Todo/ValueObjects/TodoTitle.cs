@@ -16,7 +16,7 @@ namespace DDDSample.Domain.Models.Todo.ValueObjects
                 Value = string.Empty;
                 return;
             }
-            if (IsWithinMaxLength(value))
+            if (!IsWithinMaxLength(value))
             {
                 throw new ArgumentOutOfRangeException(
                     $"最大文字数（{MaxLength}）を超えています");
