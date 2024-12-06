@@ -3,15 +3,9 @@ using DDDSample.Domain.Models.Todo.Interfaces;
 using DDDSample.Domain.Models.Todo.ValueObjects;
 using DDDSample.Infrastructure.Todo;
 using DDDSample.Wpf.Models;
-using Microsoft.VisualBasic;
 using Reactive.Bindings;
 using Reactive.Bindings.Disposables;
 using Reactive.Bindings.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DDDSample.Wpf.ViewModels
 {
@@ -25,6 +19,7 @@ namespace DDDSample.Wpf.ViewModels
         {
             RegisterCommand.Subscribe(ExeRegisterCommand).AddTo(_disposables);
             _todoRepository = TodoFactory.CreateTodoRepository();
+            UnregisterCommand.Subscribe(ExeUnregisterCommand).AddTo(_disposables);
         }
 
         public ReactivePropertySlim<string> Title { get; } = new();
@@ -32,8 +27,10 @@ namespace DDDSample.Wpf.ViewModels
         public ReactivePropertySlim<DateTime> Deadline { get; } = new();
 
         public ReactiveCollection<TodoModel> TodoModels { get; } = [];
+        public ReactivePropertySlim<TodoModel> SelectedItem { get; } = new();
 
         public ReactiveCommandSlim RegisterCommand { get; } = new();
+        public ReactiveCommandSlim UnregisterCommand { get; } = new();
 
         public void Dispose()
         {
@@ -66,6 +63,17 @@ namespace DDDSample.Wpf.ViewModels
             };
 
             TodoModels.Add(todoModel);
+        }
+
+        private void ExeUnregisterCommand()
+        {
+            if (SelectedItem.Value == null) { return; }
+
+            var id = new TodoID(SelectedItem.Value.ID);
+            _todoRepository.DeleteByID(id);
+
+            var model = TodoModels.FirstOrDefault(x => x.ID == SelectedItem.Value.ID);
+            TodoModels.Remove(model);
         }
     }
 }

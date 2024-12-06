@@ -9,10 +9,15 @@ namespace DDDSample.Domain.Models.Todo.ValueObjects
     {
         public TodoID()
         {
-            Value = Guid.NewGuid();
+            Value = Guid.NewGuid().ToString();
         }
 
-        public Guid Value { get; }
+        public TodoID(string value)
+        {
+            Value = value;
+        }
+
+        public string Value { get; }
 
         protected override bool EqualsCore(TodoID other)
         {

@@ -28,14 +28,16 @@
                 <TextBlock Text="期限日"/>
                 <DatePicker DisplayDate="{Binding Deadline.Value}"/>
                 <Button Content="登録する"
-                        Margin="8"
+                        Margin="0 8 0 0"
                         Command="{Binding RegisterCommand}"/>
+                <Button Content="削除する"
+                        Command="{Binding UnregisterCommand}"/>
             </StackPanel>
         </Grid>
 
         <Grid Grid.Row="1">
             <DataGrid ItemsSource="{Binding TodoModels}"
-                      SelectedItem=""/>
+                      SelectedItem="{Binding SelectedItem.Value}"/>
         </Grid>
     </Grid>
 </Window>
